@@ -11,7 +11,6 @@ module.exports = {
         filename: 'vault-423.js',
         path: path.resolve('./src/', 'dist')
     },
-    devtool: "source-map",
     module: {
         rules: [
             // ... other rules
