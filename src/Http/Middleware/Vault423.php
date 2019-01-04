@@ -19,7 +19,7 @@ class Vault423
         $passwordString = config('vault-423.passwords');
         $passwords = explode(',', $passwordString);
 
-        $isPasswordSet = count($passwords);
+        $isPasswordSet = !empty($passwords[0]);
         $isOnWhitelist = in_array($request->getClientIp(), config('vault-423.whitelist'));
         $isCookiePasswordCorrect = false;
         // we are not using session cookies here for 3 reasons
