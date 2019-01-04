@@ -27,7 +27,6 @@
     },
     "post-update-cmd": [
         "php artisan clear-compiled",
-        "php artisan optimize",
-        "php artisan vendor:publish --provider='SebastianJung\\Vault423\\Vault423ServiceProvider'"
+        "php artisan optimize"
     ]
 }
