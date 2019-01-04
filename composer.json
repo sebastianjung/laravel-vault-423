@@ -1,6 +1,6 @@
 {
     "name": "sebastianjung/laravel-vault-423",
-    "description": "Password Protection for Laravel Applications.",
+    "description": "A Laravel Password Protection Middleware",
     "type": "library",
     "license": "MIT",
     "authors": [
