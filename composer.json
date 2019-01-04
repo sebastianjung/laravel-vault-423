@@ -1,0 +1,33 @@
+{
+    "name": "sebastianjung/laravel-vault-423",
+    "description": "Password Protection for Laravel Applications.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastian Jung",
+            "email": "jungsebastian92@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.0",
+        "illuminate/support": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SebastianJung\\Vault423\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SebastianJung\\Vault423\\Vault423ServiceProvider"
+            ]
+        }
+    },
+    "post-update-cmd": [
+        "php artisan clear-compiled",
+        "php artisan optimize",
+        "php artisan asset:publish vendor/sebastianjung"
+    ]
+}
