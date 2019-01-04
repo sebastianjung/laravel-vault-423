@@ -1,8 +1,6 @@
 import Vue from 'vue';
 import axios from 'axios';
-
 import { TimelineMax, Linear, Ease, Power3 } from 'gsap';
-
 import Typewriter from 'typewriter-effect/dist/core';
 
 var app = new Vue({
@@ -10,7 +8,6 @@ var app = new Vue({
     data: {
         password: '',
         isPasswordIncorrect: false,
-        isSendingAjaxRequest: false,
         timelines: {
             lockToInputMorph: new TimelineMax(),
             shrinkInputField: new TimelineMax(),
@@ -20,7 +17,7 @@ var app = new Vue({
         }
     },
     mounted() {
-        this.initTimelines();
+        this.initAnimations();
         this.initTypewriter();
     },
     methods: {
@@ -35,11 +32,12 @@ var app = new Vue({
             this.timelines.rotateLock.play();
 
             // POST REQUEST
-            axios.post('/vault-423/check-password', {
-                'vault-423-password': this.password
-            })
+            axios
+                .post('/vault-423/check-password', {
+                    'vault-423-password': this.password
+                })
                 .then((response) => {
-                    let waitTime = this.isPasswordIncorrect ? 1000 : 400;
+                    let waitTime = this.isPasswordIncorrect ? 1000 : 400; // if password was incorrect we first need to remove the password warning before the next animation is played
                     if (response.status == 200) {
                         this.setCookieForever('vault-423', this.password);
                         setTimeout(() => {
@@ -66,9 +64,7 @@ var app = new Vue({
             var expires = "expires=" + d.toUTCString();
             document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
         },
-        initTimelines() {
-            let shrinkTime = 1;
-
+        initAnimations() {
             // LOCK TO INPUT MORPH
             this.timelines.lockToInputMorph
                 .from('.lock', 0.7, {
@@ -83,25 +79,26 @@ var app = new Vue({
                 .from('.lock input', 0.5, {
                     height: 25,
                     width: 57,
+                    color: 'transparent',
                     padding: 0,
                     ease: Power3.easeOut
                 })
-            .play();
+            .play(); // starts at page load
 
             // INPUT SHRINK
             this.timelines.shrinkInputField
-                .to('.lock input', shrinkTime, {
+                .to('.lock input', 1, {
                     width: 40,
                     textShadow: 'transparent',
                     padding: 0,
                     ease: Elastic.easeIn.config(1, 0.75)
                 }, '-0.5')
-            .stop();
+            .stop(); // starts when play() gets called
 
             // ROTATE LOCK / WAITING FOR PW CHECK
             this.timelines.rotateLock
                 .to('.lock #lock-svg', 3, { 
-                    delay: shrinkTime - 0.5,
+                    delay: 0.5,
                     rotation: "360", 
                     ease: Linear.easeNone, 
                     repeat: -1 
@@ -126,7 +123,7 @@ var app = new Vue({
                 }, 0)
             .stop();
 
-            // PASSWORD WRONG
+            // PASSWORD CORRECT
             this.timelines.showSuccess
                 .to('.lock', 0.1, {
                     rotation: 0
@@ -174,6 +171,5 @@ var app = new Vue({
                 .deleteChars(17)
                 .start();
         }
-
     }
 });

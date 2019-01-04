@@ -1,7 +1,7 @@
 {
   "name": "laravel-vault-423",
   "version": "1.0.0",
-  "description": "Password Protection for Laravel Applications.",
+  "description": "A Password Protection Middleware For Laravel Applications",
   "main": "src/resources/js/app.js",
   "author": "Sebastian Jung",
   "license": "MIT",
@@ -30,6 +30,7 @@
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.5.21",
     "webpack": "^4.28.1",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-error-notification": "^0.1.8"
   }
 }
