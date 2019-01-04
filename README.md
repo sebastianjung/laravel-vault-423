@@ -17,7 +17,7 @@ A Password Protection Middleware For Laravel Applications
 # Installation
 ### Composer
 ```
-composer required sebastianjung/laravel-vault-423
+composer require sebastianjung/laravel-vault-423
 ```
 
 
