@@ -29,18 +29,6 @@ class Vault423ServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
 
-        // $this->publishes([
-        //     __DIR__ . '/resources/views' => resource_path('views/vendor/vault-423'),
-        // ], 'views');
-
-        // $this->publishes([
-        //     __DIR__ . '/resources/js' => public_path('js'),
-        // ], 'js');
-
-        $this->publishes([
-            __DIR__ . '/resources/img' => public_path('img/vault-423/'),
-        ], 'img');
-
         $this->publishes([
             __DIR__ . '/config' => config_path(),
         ], 'config');
