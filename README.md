@@ -70,7 +70,7 @@ Available customizations are:
 - font family
 - and if that is not enough for you: a custom css option
 ```
-Further information is available in the vault-423.php config file.
+Further information is available in the [vault-423.php](https://github.com/sebastianjung/laravel-vault-423/blob/master/src/config/vault-423.php) config file.
 
 # Troubleshooting
 ### Call To Undefined Method isDeferred()
