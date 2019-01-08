@@ -45,7 +45,7 @@ SebastianJung\Vault423\Vault423ServiceProvider::class
 # Configuration
 To publish the config file for this package simply execute
 ```
-php artisan vendor:publish --provider='SebastianJung\\Vault423\\Vault423ServiceProvider'
+php artisan vendor:publish --provider='SebastianJung\Vault423\Vault423ServiceProvider'
 ```
 
 ### Whitelisting
