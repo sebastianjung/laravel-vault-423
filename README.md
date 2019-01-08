@@ -8,6 +8,7 @@ A Password Protection Middleware For Laravel Applications That Fits Your Brand.
 - IP whitelisting (saves time when clearing cookie cache often times ;P)
 - fully customizable (Custom Logo, Font Family, Colors and more ...
 - neat animations
+- works in common Browser (including our most beloved IE11)
 
 
 # CONTENTS
