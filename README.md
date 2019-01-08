@@ -12,6 +12,7 @@ A Password Protection Middleware For Laravel Applications
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [ToDos](#todos)
+- [Troubleshooting](#troubleshooting)
 
 
 # Installation
@@ -36,7 +37,7 @@ VAULT_423_PASSWORDS=password1,password2
 If no password / string is provided the page is accessible to anyone.
 
 
-### Laravel < 5.2
+### Laravel < 5.5
 Remember to add the ServiceProvider of this package to your `$providers` array inside your `app.php` config file.
 ```
 SebastianJung\Vault423\Vault423ServiceProvider::class
@@ -59,3 +60,10 @@ Inside your config file there is an Array called `whitelist`. Just fill it with 
 - custom website link
 - custom background and font color
 - feedback when input is focused
+
+# Troubleshooting
+### Call To Undefined Method isDeferred()
+You may need to call the package discovery of laravel again like so:
+```
+php artisan package:discover
+```
