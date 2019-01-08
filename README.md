@@ -14,7 +14,7 @@ A Password Protection Middleware For Laravel Applications That Fits Your Brand.
 # CONTENTS
 - [Installation](#installation)
 - [Configuration](#configuration)
-- [Customization] (#customization)
+- [Customization](#customization)
 - [Troubleshooting](#troubleshooting)
 
 
