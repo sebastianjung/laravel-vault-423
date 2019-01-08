@@ -1,4 +1,5 @@
 import Vue from 'vue';
+require('es6-promise').polyfill();
 import axios from 'axios';
 import { TimelineMax, Linear, Ease, Power3 } from 'gsap';
 import Typewriter from 'typewriter-effect/dist/core';
@@ -8,20 +9,65 @@ var app = new Vue({
     data: {
         password: '',
         isPasswordIncorrect: false,
+        isInputReady: false,
         timelines: {
-            lockToInputMorph: new TimelineMax(),
+            morphLockToInput: new TimelineMax(),
             shrinkInputField: new TimelineMax(),
             rotateLock: new TimelineMax(),
             showError: new TimelineMax(),
-            showSuccess: new TimelineMax()
-        }
+            showSuccess: new TimelineMax(),
+            bounceLock: new TimelineMax()
+        },
+        sentences: [
+            'entwickelt.',
+            'das Passwort eingegeben.',
+            'Herzblut reingesteckt.',
+            'Großes erschaffen!',
+        ]
     },
     mounted() {
         this.initAnimations();
         this.initTypewriter();
+
+        if (!this.checkForIE()) { // set autofocus already onload for faster typing (not for IE)
+            this.setFocus();
+        }
     },
     methods: {
-        submit(goToUrl) {
+        checkForIE() {
+            var rV = -1; // Return value assumes failure.
+
+            if (navigator.appName == 'Microsoft Internet Explorer' || navigator.appName == 'Netscape') {
+                var uA = navigator.userAgent;
+                var rE = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+
+                if (rE.exec(uA) != null) {
+                    rV = parseFloat(RegExp.$1);
+                }
+                /*check for IE 11*/
+                else if (!!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+                    rV = 11;
+                }
+            }
+            
+            if (rV != -1) {
+                return true;
+            }
+
+            return false;
+        },
+        removePasswordIncorrectWarning() {
+            if (this.isPasswordIncorrect) {
+                this.timelines.showError.reverse();
+            }
+        },
+        submit(goToUrl, isClicked) {
+            if (isClicked && !this.isInputReady) {
+                this.timelines.bounceLock.play();
+                console.log('clicked but not ready');
+                return;
+            }
+
             this.goToUrl = goToUrl;
 
             // ANIMATIONS
@@ -53,8 +99,10 @@ var app = new Vue({
                         this.timelines.rotateLock.stop();
                         setTimeout(() => {
                             this.timelines.showError.play();
+                            this.password = '';
+                            this.setFocus();
                         }, 500);
-                        
+
                     }, 1000);
                 });
         },
@@ -64,46 +112,72 @@ var app = new Vue({
             var expires = "expires=" + d.toUTCString();
             document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
         },
+        setFocus() {
+            let input = document.querySelector('input');
+            input.focus();
+        },
         initAnimations() {
             // LOCK TO INPUT MORPH
-            this.timelines.lockToInputMorph
+            this.timelines.morphLockToInput
+                .set('.lock', {
+                    display: 'flex'
+                })
                 .from('.lock', 0.7, {
-                    delay: 4,
+                    delay: 2.5,
                     scale: 0,
                     ease: Elastic.easeOut.config(1, 0.5)
                 })
-                .from('.lock', 0.5, {
-                   rotation: 90,
-                   ease: Elastic.easeIn.config(1, 0.75)
-                }, '+=0.1')
-                .from('.lock input', 0.5, {
+                .add(() => {
+                    this.timelines.bounceLock.play()
+                })
+                .fromTo('.lock input', 0.5, {
+                    width: 50,
+                    height: 25
+                }, {
+                    width: 25,
                     height: 25,
-                    width: 57,
+                    scale: 1,
+                    delay: 2.75,
+                    ease: Elastic.easeIn.config(1, 0.75)
+                })
+                .from('.lock', 0.5, {
+                    rotation: 90,
+                    ease: Elastic.easeIn.config(1, 0.75)
+                })
+                .to('.lock input', 0.5, {
+                    width: 220,
+                    height: 40,
+                    ease: Elastic.easeIn.config(1, 0.75)
+                })
+                .from('.lock input', 0.5, {
                     color: 'transparent',
-                    padding: 0,
                     ease: Power3.easeOut
                 })
-            .play(); // starts at page load
+                .add(() => {
+                    this.isInputReady = true;
+                    this.setFocus();
+                })
 
             // INPUT SHRINK
             this.timelines.shrinkInputField
                 .to('.lock input', 1, {
                     width: 40,
-                    textShadow: 'transparent',
+                    height: 40,
                     padding: 0,
+                    textShadow: 'transparent',
                     ease: Elastic.easeIn.config(1, 0.75)
-                }, '-0.5')
-            .stop(); // starts when play() gets called
+                }, -0.5)
+                .stop(); // starts when play() gets called
 
             // ROTATE LOCK / WAITING FOR PW CHECK
             this.timelines.rotateLock
-                .to('.lock #lock-svg', 3, { 
+                .to('.lock #lock-svg', 3, {
                     delay: 0.5,
-                    rotation: "360", 
-                    ease: Linear.easeNone, 
-                    repeat: -1 
+                    rotation: "360",
+                    ease: Linear.easeNone,
+                    repeat: -1
                 })
-            .stop();
+                .stop();
 
             // PASSWORD WRONG
             this.timelines.showError
@@ -121,7 +195,7 @@ var app = new Vue({
                     scale: 1,
                     ease: Elastic.easeOut.config(1, 0.5)
                 }, 0)
-            .stop();
+                .stop();
 
             // PASSWORD CORRECT
             this.timelines.showSuccess
@@ -137,10 +211,6 @@ var app = new Vue({
                     scale: 1,
                     ease: Elastic.easeOut.config(1, 0.5)
                 }, 0)
-                .to('.lock', 5, {
-                    scale: 20,
-                    ease: Elastic.easeOut.config(1, 0.5)
-                })
                 .to('html', 0.5, {
                     autoAlpha: 0,
                     background: '#fff'
@@ -148,28 +218,34 @@ var app = new Vue({
                 .add(() => {
                     window.location.href = this.goToUrl;
                 }, 1.5)
-            .stop();
+                .stop();
+
+            this.timelines.bounceLock
+                .to('.lock', 0.25, {
+                    y: 5
+                })
+                .to('.lock', 0.25, {
+                    y: -5
+                })
+                .to('.lock', 0.25, {
+                    y: 0
+                })
+                .stop();
         },
         initTypewriter() {
             let typewriter = new Typewriter('.typewriter-js', {
                 loop: true
             });
 
-            typewriter
-                .changeDeleteSpeed(0.5)
-                .typeString('Hier wird entwickelt.')
-                .pauseFor(2500)
-                .deleteChars(11)
-                .typeString('das Passwort eingegeben.')
-                .pauseFor(2500)
-                .deleteChars(24)
-                .typeString('Herzblut reingesteckt.')
-                .pauseFor(2500)
-                .deleteChars(22)
-                .typeString('Großes erschaffen!')
-                .pauseFor(2500)
-                .deleteChars(17)
-                .start();
+            // writing sentences
+            this.sentences.forEach(sentence => {
+                typewriter
+                    .typeString(sentence)
+                    .pauseFor(2500)
+                    .deleteAll(0.5);
+            });
+
+            typewriter.start();
         }
     }
 });

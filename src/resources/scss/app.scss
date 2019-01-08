@@ -41,26 +41,31 @@ body {
     }
 
     .lock-wrapper {
-        position: relative;
+        position: absolute;
+        top: 50%;
         display: flex;
         align-items: center;
         flex-direction: column;
-        transform: scale(1.5);
+
+        @media screen and (min-width: 640px) {
+            position: relative;
+            top: 0;
+        }
 
         .lock {
             position: relative;
-            height: 40px;
-            display: flex;
+            height: 55px;
             align-items: center;
+            justify-content: flex-end;
+            display: none;
 
             input[type="password"] {
                 border-radius: 40px;
-                height: 40px;
-                width: 200px;
-                border: 2px solid #fff;
+                height: calc(100% - 15px);
+                width: 220px;
+                border: 3px solid #fff;
                 background: transparent;
-                box-sizing: border-box;
-                font-size: 0.5rem;
+                font-size: 0.7rem;
                 color: #fff;
                 text-shadow: 0 0 0 #fff;
                 font-family: 'fontello';
@@ -71,8 +76,8 @@ body {
                 text-transform: none;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
-                letter-spacing: 2px;
-                padding: 2px 50px 9px 20px;
+                letter-spacing: 4px;
+                padding: 0 0 9px 24px;
                 outline: none;
             }
 
@@ -80,8 +85,8 @@ body {
                 position: absolute;
                 right: 0;
                 top: 0;
-                width: 40px;
-                height: 40px;
+                width: 55px;
+                height: 55px;
 
                 #inner-lock {
                     transform-origin: center;
@@ -93,10 +98,11 @@ body {
                 opacity: 0;
                 visibility: hidden;
                 position: absolute;
-                right: 0;
-                top: 0;
-                height: 40px;
-                width: 40px;
+                right: 1px;
+                top: -1px;
+                font-size: 1.2rem;
+                height: 55px;
+                width: 55px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -105,8 +111,8 @@ body {
             .password-correct-icon {
                 display: inline-block;
                 position: absolute;
-                top: 10px;
-                right: 15px;
+                top: 17px;
+                right: 23px;
                 opacity: 0;
                 visibility: hidden;
                 transform: scale(0);
@@ -128,7 +134,7 @@ body {
             transform: scale(0);
             opacity: 0;
             visibility: hidden;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             letter-spacing: 0.03rem;
             text-align: center;
         }
@@ -158,9 +164,10 @@ body {
 
 .logo {
     right: 50px;
+    display: flex;
 
     img {
         width: 40px;
-        height: auto;
+        height: 40px;
     }
 }

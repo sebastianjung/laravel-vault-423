@@ -18,6 +18,9 @@ return [
 
     // whitelisted ips
     // expects ARRAY
-    'whitelist' => []
+    'whitelist' => [],
+
+    // if path is given custom logo will be used
+    'custom_logo_path' => ''
 
 ];
