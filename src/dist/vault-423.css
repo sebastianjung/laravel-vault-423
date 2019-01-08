@@ -13,7 +13,7 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: #e0dd00;
-  font-family: ff-tisa-sans-web-pro, sans-serif;
+  font-family: 'Fira Code', monospace;
   color: #fff; }
 
 body {
@@ -30,9 +30,11 @@ body {
   flex-direction: column;
   margin-bottom: 210px; }
   .centered-content h1 {
-    margin-bottom: 70px;
+    margin-bottom: 50px;
     text-align: center;
     padding: 0 20px; }
+    .centered-content h1 .typewriter-part-two .Typewriter__cursor {
+      display: none; }
   .centered-content .lock-wrapper {
     position: absolute;
     top: 50%;
@@ -103,7 +105,7 @@ body {
           display: block;
           width: 8px;
           height: 15px;
-          border: solid #fff;
+          border: solid;
           border-width: 0 2px 2px 0;
           transform: rotate(45deg); }
     .centered-content .lock-wrapper .password-incorrect-text {
@@ -123,7 +125,7 @@ body {
 
 .url {
   left: 50px;
-  font-family: ff-dax-pro, sans-serif;
+  font-family: 'Fira Code', sans-serif;
   font-weight: 600;
   font-style: normal;
   letter-spacing: 0.04rem;
@@ -134,8 +136,12 @@ body {
 
 .logo {
   right: 50px;
-  display: flex; }
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: flex-end;
+  cursor: default; }
   .logo img {
-    width: 40px;
-    height: 40px; }
+    width: 100%; }
 

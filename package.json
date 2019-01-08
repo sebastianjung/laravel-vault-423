@@ -1,7 +1,7 @@
 {
   "name": "laravel-vault-423",
   "version": "1.0.0",
-  "description": "A Password Protection Middleware For Laravel Applications",
+  "description": "A Customizable Password Protection Middleware For Laravel Applications That Fits Your Brand.",
   "main": "src/resources/js/app.js",
   "author": "Sebastian Jung",
   "license": "MIT",

@@ -7,12 +7,8 @@ use Illuminate\Routing\Controller;
 
 class AssetController extends Controller
 {
-    public function img() {
-        if (config('vault-423.custom_logo_path')) {
-            $content = file_get_contents('img/' . config('vault-423.custom_logo_path')); // custom logo
-        } else {
-            $content = file_get_contents(__DIR__ . '/../../resources/img/ub-logo.svg'); // default logo
-        }
+    public function logo() {
+        $content = file_get_contents(__DIR__ . '/../../resources/img/ub-logo.svg'); // default logo
 
         $response = new Response(
             $content,

@@ -18,12 +18,8 @@ var app = new Vue({
             showSuccess: new TimelineMax(),
             bounceLock: new TimelineMax()
         },
-        sentences: [
-            'entwickelt.',
-            'das Passwort eingegeben.',
-            'Herzblut reingesteckt.',
-            'Großes erschaffen!',
-        ]
+        typewriterTextPartOne: '',
+        typewriterTextPartTwo: []
     },
     mounted() {
         this.initAnimations();
@@ -233,19 +229,35 @@ var app = new Vue({
                 .stop();
         },
         initTypewriter() {
-            let typewriter = new Typewriter('.typewriter-js', {
+            // SETUP
+            let typewriterPartOne = new Typewriter('.typewriter-part-one');
+            let typewriterPartTwo = new Typewriter('.typewriter-part-two', {
                 loop: true
             });
+            this.typewriterTextPartOne = JSON.parse(document.querySelector('h1').dataset.typewriterPartOne); // get sentence from template
+            this.typewriterTextPartTwo = JSON.parse(document.querySelector('h1').dataset.typewriterPartTwo); // get sentences from template
 
-            // writing sentences
-            this.sentences.forEach(sentence => {
-                typewriter
+            // MANIPULATE TYPEWRITER ONE
+            typewriterPartOne
+                .typeString(this.typewriterTextPartOne)
+                .callFunction(() => {
+                    document.querySelector('.Typewriter__cursor').style.display = 'none';
+                    document.querySelector('.typewriter-part-one .Typewriter__cursor').style.display = 'none';
+                    document.querySelector('.typewriter-part-two .Typewriter__cursor').style.display = 'inline-block';
+                })
+                .start()
+
+            // MANIPULATE TYPEWRITER TWO
+            this.typewriterTextPartTwo.forEach(sentence => {
+                typewriterPartTwo
                     .typeString(sentence)
                     .pauseFor(2500)
                     .deleteAll(0.5);
             });
 
-            typewriter.start();
+            setTimeout(() => {
+                typewriterPartTwo.start();
+            }, 2000);
         }
     }
 });

@@ -9,5 +9,5 @@
         Route::get('js', 'AssetController@js');
         Route::get('css', 'AssetController@css');
         Route::get('fonts/{fontname}', 'AssetController@fonts');
-        Route::get('img/logo', 'AssetController@img');
+        Route::get('logo', 'AssetController@logo');
     });

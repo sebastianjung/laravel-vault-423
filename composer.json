@@ -1,6 +1,6 @@
 {
     "name": "sebastianjung/laravel-vault-423",
-    "description": "A Password Protection Middleware For Laravel Applications",
+    "description": "A Customizable Password Protection Middleware For Laravel Applications That Fits Your Brand.",
     "type": "library",
     "license": "MIT",
     "authors": [
