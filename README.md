@@ -67,7 +67,7 @@ Available customizations are:
 - welcome text
 - link to some webpage
 - colors
-- font family
+- font families
 - and if that is not enough for you: a custom css option
 ```
 Further information is available in the [vault-423.php](https://github.com/sebastianjung/laravel-vault-423/blob/master/src/config/vault-423.php) config file.
