@@ -11,6 +11,9 @@
     @if(config('vault-423.customization.font_family.link'))
         <link href="{{ config('vault-423.customization.font_family.link') }}" rel="stylesheet">
     @endif
+    @if(config('vault-423.customization.font_family_bottom_left.link'))
+        <link href="{{ config('vault-423.customization.font_family_bottom_left.link') }}" rel="stylesheet">
+    @endif
     <link rel="stylesheet" href="/vault-423/css">
 
     <style>
@@ -45,7 +48,7 @@
         </div>
 
         <div class="url">
-            <a href="{{ config('vault-423.customization.bottom_left_link') }}" target="_blank" style="color: {{ config('vault-423.customization.font_color') }}; font-family: {{ config('vault-423.customization.font_family.name') }}, monospace;">
+            <a href="{{ config('vault-423.customization.bottom_left_link') }}" target="_blank" style="color: {{ config('vault-423.customization.font_color') }}; font-family: {{ config('vault-423.customization.font_family_bottom_left.name') ? config('vault-423.customization.font_family_bottom_left.name') : config('vault-423.customization.font_family.name') }}, monospace;">
                 {{ config('vault-423.customization.bottom_left_text') }}
             </a>
         </div>

@@ -35,14 +35,37 @@ return [
         'font_color' => 'white',
 
         'font_family' => [
-            'link' => 'https://fonts.googleapis.com/css?family=Fira+Mono',
+            // e.g. adobe font: 'https://use.typekit.net/koj7cxt.css',
+            'link' => 'https://use.typekit.net/koj7cxt.css', // e.g. google font
             
+            // e.g. adobe font 'ff-tisa-sans-web-pro'
             'name' => 'Fira Mono'
         ],
 
+        'font_family_bottom_left' => [
+            'link' => '',
+
+            'name' => 'ff-dax-pro'
+        ],
+
+        'font_family' => [
+            // e.g. adobe font: 'https://use.typekit.net/XYZ.css',
+            'link' => 'https://fonts.googleapis.com/css?family=Fira+Mono', // google font
+            
+            // e.g. adobe fonts: 'ff-tisa-sans-web-pro' or 'ff-dax-pro'
+            'name' => 'Fira Mono'
+        ],
+
+        'font_family_bottom_left' => [
+            // can be left blank if two fonts are provided by the link above
+            'link' => '',
+            
+            'name' => ''
+        ],
+
         'custom_css' => '
-            // h1 {
-            //     color: red !important;
+            // body {
+            //     background-image: url(/img/koj7cxt.jpg);
             // }
         '
     ]
