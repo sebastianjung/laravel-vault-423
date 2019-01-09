@@ -21,9 +21,11 @@ return [
 
         // value as max-width and -height in px (e.g. 40px x 40px)
         'logo_size' => 40,
-
+        
+        // stands still
         'text_typewriter_part_one' => 'Hier wird',
-
+        
+        // keeps looping
         'text_typewriter_part_two' => ['entwickelt.', 'das Passwort eingegeben.', 'Herzblut reingesteckt.', 'Großes erschaffen!'],
 
         'bottom_left_text' => 'www.ultrabold.de',
