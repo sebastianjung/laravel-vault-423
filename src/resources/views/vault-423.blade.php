@@ -43,7 +43,9 @@
                         <span class="password-correct-icon" style="color: {{ config('vault-423.customization.font_color') }}"></span>
                     </div>
 
-                    <div class="password-incorrect-text" style="color: {{ config('vault-423.customization.font_color') }}">falsches Kennwort</div>
+                    <div class="password-incorrect-text" style="color: {{ config('vault-423.customization.font_color') }}">
+                        {{ config('vault-423.customization.incorrect_password') }}
+                    </div>
             </div>
         </div>
 

@@ -28,6 +28,8 @@ return [
         // keeps looping
         'text_typewriter_part_two' => ['entwickelt.', 'das Passwort eingegeben.', 'Herzblut reingesteckt.', 'Großes erschaffen!'],
 
+        'incorrect_password' => 'falsches Kennwort',
+
         'bottom_left_text' => 'www.ultrabold.de',
 
         'bottom_left_link' => 'http://www.ultrabold.com',
