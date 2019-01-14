@@ -102,14 +102,19 @@ body {
                 opacity: 0;
                 visibility: hidden;
                 position: absolute;
-                right: 1px;
-                top: -1px;
+                right: 0;
+                top: 0;
                 font-size: 1.2rem;
                 height: 55px;
                 width: 55px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+
+                #error-svg {
+                    height: 15px;
+                    width: 15px;
+                }
             }
 
             .password-correct-icon {
@@ -134,7 +139,7 @@ body {
         }
 
         .password-incorrect-text {
-            margin-top: 3px;
+            margin-top: 6px;
             transform: scale(0);
             opacity: 0;
             visibility: hidden;

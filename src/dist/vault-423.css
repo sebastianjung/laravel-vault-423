@@ -84,14 +84,17 @@ body {
         opacity: 0;
         visibility: hidden;
         position: absolute;
-        right: 1px;
-        top: -1px;
+        right: 0;
+        top: 0;
         font-size: 1.2rem;
         height: 55px;
         width: 55px;
         display: flex;
         justify-content: center;
         align-items: center; }
+        .centered-content .lock-wrapper .lock .password-incorrect-icon #error-svg {
+          height: 15px;
+          width: 15px; }
       .centered-content .lock-wrapper .lock .password-correct-icon {
         display: inline-block;
         position: absolute;
@@ -109,7 +112,7 @@ body {
           border-width: 0 2px 2px 0;
           transform: rotate(45deg); }
     .centered-content .lock-wrapper .password-incorrect-text {
-      margin-top: 3px;
+      margin-top: 6px;
       transform: scale(0);
       opacity: 0;
       visibility: hidden;

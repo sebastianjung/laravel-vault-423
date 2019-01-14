@@ -39,18 +39,19 @@ return [
         'font_color' => 'white',
 
         'font_family' => [
-            // e.g. adobe font: 'https://use.typekit.net/XYZ.css',
-            'link' => 'https://fonts.googleapis.com/css?family=Fira+Mono', // google font
+            // e.g. adobe font: 'https://use.typekit.net/koj7cxt.css',
+            'link' => 'https://use.typekit.net/koj7cxt.css', // google font
             
             // e.g. adobe fonts: 'ff-tisa-sans-web-pro' or 'ff-dax-pro'
-            'name' => 'Fira Mono'
+            'name' => 'ff-tisa-sans-web-pro'
         ],
 
-        'font_family_bottom_left' => [
+        // font family for bottom left section, incorrect password error text and error icon
+        'font_family_secondary' => [
             // can be left blank if two fonts are provided by the link above
             'link' => '',
             
-            'name' => ''
+            'name' => 'ff-dax-pro'
         ],
 
         'custom_css' => '
