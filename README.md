@@ -1,6 +1,9 @@
 # laravel-vault-423
 A Password Protection Middleware For Laravel Applications That Fits Your Brand.
 
+![](teaser.gif)
+
+DEMO: [vault-423.ultrabold.de](http://www.vault-423.ultrabold.de) // PASSWORD: vault423
 
 # Features
 - multiple passwords (per .env file)
