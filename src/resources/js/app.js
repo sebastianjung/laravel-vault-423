@@ -60,7 +60,6 @@ var app = new Vue({
         submit(goToUrl, isClicked) {
             if (isClicked && !this.isInputReady) {
                 this.timelines.bounceLock.play();
-                console.log('clicked but not ready');
                 return;
             }
 
