@@ -31,7 +31,13 @@ composer require sebastianjung/laravel-vault-423
 ### Middleware
 Add the following line to your `$middlewareGroups` Array inside your `Kernel.php`
 ```
-\SebastianJung\Vault423\Http\Middleware\Vault423::class
+protected $middlewareGroups = [
+        'web' => [
+            ...,
+            \SebastianJung\Vault423\Http\Middleware\Vault423::class
+        ],
+        ...
+]
 ```
 
 
@@ -47,6 +53,21 @@ If no password / string is provided the page is accessible to anyone.
 Remember to add the ServiceProvider of this package to your `$providers` array inside your `app.php` config file.
 ```
 SebastianJung\Vault423\Vault423ServiceProvider::class
+```
+
+### Laravel < 5.2
+Because there is no `$middlewareGroups` Array inside your `Kernel.php` you need to add a `'vault'` key to the `$routeMiddleware` Array like so:
+```
+protected $routeMiddleware = [
+  ...,
+  'vault' => \SebastianJung\Vault423\Http\Middleware\Vault423::class
+]
+```
+After that you need to wrap the Routes you want to protect with the following:
+```
+Route::group('middleware' => ['vault']], function () {
+  Route::get('/', 'SiteController@index');
+});
 ```
 
 # Configuration
