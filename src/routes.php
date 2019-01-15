@@ -1,6 +1,6 @@
 <?php
 
-    Route::group(['middleware' => ['api'],
+    Route::group([
         'namespace' => 'SebastianJung\Vault423\Http\Controllers',
         'prefix' => 'vault-423'
     ],

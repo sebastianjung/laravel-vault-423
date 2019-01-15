@@ -27,7 +27,9 @@ class Vault423ServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'vault-423');
 
-        $this->loadRoutesFrom(__DIR__ . '/routes.php');
+        if (!$this->app->routesAreCached()) {
+            require __DIR__ . '/routes.php';
+        }
 
         $this->publishes([
             __DIR__ . '/config' => config_path(),
