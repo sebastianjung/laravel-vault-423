@@ -1,3 +1,7 @@
+# THIS PACKAGE IS NO LONGER MAINTAINED
+Please use another password protection tool for your websites
+
+
 # laravel-vault-423
 A Password Protection Middleware For Laravel Applications That Fits Your Brand.
 
