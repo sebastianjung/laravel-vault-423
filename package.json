@@ -9,7 +9,7 @@
     "browsersync": "browser-sync start --proxy 'localhost:8000' --files './src/dist/**'"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "es6-promise": "^4.2.5",
     "gsap": "^2.0.2",
     "typewriter-effect": "^2.5.0",
