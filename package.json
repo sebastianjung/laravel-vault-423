@@ -11,7 +11,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "es6-promise": "^4.2.5",
-    "gsap": "^2.0.2",
+    "gsap": "^3.6.0",
     "typewriter-effect": "^2.5.0",
     "vue": "^2.1.10"
   },
