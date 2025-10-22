@@ -1,4 +1,7 @@
 # THIS PACKAGE IS NO LONGER MAINTAINED
+
+**SEEKING NEW MAINTAINER:** This project is looking for a new maintainer. If you're interested in taking over maintenance of this package, please open an issue to discuss.
+
 Please use another password protection tool for your websites
 
 
